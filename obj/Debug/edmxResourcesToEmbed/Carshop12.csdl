@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Carshop12Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbleAdmin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Carshop12Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbleAdmins" EntityType="Self.tbleAdmin" />
+    <FunctionImport Name="DoAdminLogin" ReturnType="Collection(Carshop12Model.DoAdminLogin_Result)">
+      <Parameter Name="EMAIL" Mode="In" Type="String" />
+      <Parameter Name="PASSWORD" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteAdmin" ReturnType="Collection(Carshop12Model.DeleteAdmin_Result)">
+      <Parameter Name="ADMINID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetAdmins" ReturnType="Collection(Carshop12Model.GetAdmins_Result)" />
+  </EntityContainer>
+  <ComplexType Name="DoAdminLogin_Result">
+    <Property Type="Int32" Name="AdminID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="30" />
+    <Property Type="Boolean" Name="status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="DeleteAdmin_Result">
+    <Property Type="Int32" Name="AdminID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="30" />
+    <Property Type="Boolean" Name="status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetAdmins_Result">
+    <Property Type="Int32" Name="AdminID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="30" />
+    <Property Type="Boolean" Name="status" Nullable="false" />
+  </ComplexType>
+</Schema>

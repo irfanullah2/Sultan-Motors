@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Carshop12Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbleAdmin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbleBrand">
+    <Key>
+      <PropertyRef Name="BrandId" />
+    </Key>
+    <Property Name="BrandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Brand" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbleCar">
+    <Key>
+      <PropertyRef Name="CarID" />
+    </Key>
+    <Property Name="CarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="BrandId" Type="int" />
+    <Property Name="TypeID" Type="int" />
+    <Property Name="Color" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Model" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Transmission" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Entertainment" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Seats" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="GpsTracker" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Steering" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Headlights" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="HvAC" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Safety" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Fuel" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Instrument" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbleCarNames">
+    <Key>
+      <PropertyRef Name="CarNameID" />
+    </Key>
+    <Property Name="CarNameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbleType">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tbleCar_tbleBrand">
+    <End Role="tbleBrand" Type="Self.tbleBrand" Multiplicity="0..1" />
+    <End Role="tbleCar" Type="Self.tbleCar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbleBrand">
+        <PropertyRef Name="BrandId" />
+      </Principal>
+      <Dependent Role="tbleCar">
+        <PropertyRef Name="BrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbleCar_tbleType">
+    <End Role="tbleType" Type="Self.tbleType" Multiplicity="0..1" />
+    <End Role="tbleCar" Type="Self.tbleCar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbleType">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="tbleCar">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="DeletBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BrandId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DeleteAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ADMINID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DeleteCars" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CarID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DeleteType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TypeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DoAdminLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EMAIL" Type="varchar" Mode="In" />
+    <Parameter Name="PASSWORD" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetAdmins" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetCarNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetCars" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Carshop12ModelStoreContainer">
+    <EntitySet Name="tbleAdmin" EntityType="Self.tbleAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbleBrand" EntityType="Self.tbleBrand" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbleCar" EntityType="Self.tbleCar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbleCarNames" EntityType="Self.tbleCarNames" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbleType" EntityType="Self.tbleType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbleCar_tbleBrand" Association="Self.FK_tbleCar_tbleBrand">
+      <End Role="tbleBrand" EntitySet="tbleBrand" />
+      <End Role="tbleCar" EntitySet="tbleCar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbleCar_tbleType" Association="Self.FK_tbleCar_tbleType">
+      <End Role="tbleType" EntitySet="tbleType" />
+      <End Role="tbleCar" EntitySet="tbleCar" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

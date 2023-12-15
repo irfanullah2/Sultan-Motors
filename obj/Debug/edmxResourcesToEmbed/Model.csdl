@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Carshop12Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbleAdmin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbleBrand">
+    <Key>
+      <PropertyRef Name="BrandId" />
+    </Key>
+    <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Brand" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbleCars" Relationship="Self.FK_tbleCar_tbleBrand" FromRole="tbleBrand" ToRole="tbleCar" />
+  </EntityType>
+  <EntityType Name="tbleCar">
+    <Key>
+      <PropertyRef Name="CarID" />
+    </Key>
+    <Property Name="CarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BrandId" Type="Int32" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="Color" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Transmission" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Entertainment" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Seats" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GpsTracker" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Steering" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Headlights" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HvAC" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Safety" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fuel" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Instrument" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbleBrand" Relationship="Self.FK_tbleCar_tbleBrand" FromRole="tbleCar" ToRole="tbleBrand" />
+    <NavigationProperty Name="tbleType" Relationship="Self.FK_tbleCar_tbleType" FromRole="tbleCar" ToRole="tbleType" />
+  </EntityType>
+  <EntityType Name="tbleCarName">
+    <Key>
+      <PropertyRef Name="CarNameID" />
+    </Key>
+    <Property Name="CarNameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbleType">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbleCars" Relationship="Self.FK_tbleCar_tbleType" FromRole="tbleType" ToRole="tbleCar" />
+  </EntityType>
+  <Association Name="FK_tbleCar_tbleBrand">
+    <End Role="tbleBrand" Type="Self.tbleBrand" Multiplicity="0..1" />
+    <End Role="tbleCar" Type="Self.tbleCar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbleBrand">
+        <PropertyRef Name="BrandId" />
+      </Principal>
+      <Dependent Role="tbleCar">
+        <PropertyRef Name="BrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbleCar_tbleType">
+    <End Role="tbleType" Type="Self.tbleType" Multiplicity="0..1" />
+    <End Role="tbleCar" Type="Self.tbleCar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbleType">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="tbleCar">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Carshop12Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbleAdmins" EntityType="Self.tbleAdmin" />
+    <EntitySet Name="tbleBrands" EntityType="Self.tbleBrand" />
+    <EntitySet Name="tbleCars" EntityType="Self.tbleCar" />
+    <EntitySet Name="tbleCarNames" EntityType="Self.tbleCarName" />
+    <EntitySet Name="tbleTypes" EntityType="Self.tbleType" />
+    <AssociationSet Name="FK_tbleCar_tbleBrand" Association="Self.FK_tbleCar_tbleBrand">
+      <End Role="tbleBrand" EntitySet="tbleBrands" />
+      <End Role="tbleCar" EntitySet="tbleCars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbleCar_tbleType" Association="Self.FK_tbleCar_tbleType">
+      <End Role="tbleType" EntitySet="tbleTypes" />
+      <End Role="tbleCar" EntitySet="tbleCars" />
+    </AssociationSet>
+    <FunctionImport Name="DeletBrand">
+      <Parameter Name="BrandId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteAdmin">
+      <Parameter Name="ADMINID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteCars">
+      <Parameter Name="CarID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteType">
+      <Parameter Name="TypeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DoAdminLogin" ReturnType="Collection(Carshop12Model.DoAdminLogin_Result)">
+      <Parameter Name="EMAIL" Mode="In" Type="String" />
+      <Parameter Name="PASSWORD" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetAdmins" ReturnType="Collection(Carshop12Model.GetAdmins_Result)" />
+    <FunctionImport Name="GetBrand" ReturnType="Collection(Carshop12Model.GetBrand_Result)" />
+    <FunctionImport Name="GetCarNames" ReturnType="Collection(Carshop12Model.GetCarNames_Result)" />
+    <FunctionImport Name="GetCars" ReturnType="Collection(Carshop12Model.GetCars_Result)" />
+    <FunctionImport Name="GetType" ReturnType="Collection(Carshop12Model.GetType_Result)" />
+  </EntityContainer>
+  <ComplexType Name="DoAdminLogin_Result">
+    <Property Type="Int32" Name="AdminID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="30" />
+    <Property Type="Boolean" Name="status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetAdmins_Result">
+    <Property Type="Int32" Name="AdminID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="30" />
+    <Property Type="Boolean" Name="status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetBrand_Result">
+    <Property Type="Int32" Name="BrandId" Nullable="false" />
+    <Property Type="String" Name="Brand" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="GetCarNames_Result">
+    <Property Type="Int32" Name="CarNameID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="GetCars_Result">
+    <Property Type="Int32" Name="CarID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="40" />
+    <Property Type="Int32" Name="BrandId" Nullable="true" />
+    <Property Type="Int32" Name="TypeID" Nullable="true" />
+    <Property Type="String" Name="Color" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Model" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Transmission" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Entertainment" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Seats" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="GpsTracker" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Steering" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Headlights" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="HvAC" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Safety" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Fuel" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Instrument" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Brand" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Type" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="GetType_Result">
+    <Property Type="Int32" Name="TypeID" Nullable="false" />
+    <Property Type="String" Name="Type" Nullable="false" MaxLength="40" />
+  </ComplexType>
+</Schema>

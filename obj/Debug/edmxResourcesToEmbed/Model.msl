@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Carshop12ModelStoreContainer" CdmEntityContainer="Carshop12Entities">
+    <EntitySetMapping Name="tbleAdmins">
+      <EntityTypeMapping TypeName="Carshop12Model.tbleAdmin">
+        <MappingFragment StoreEntitySet="tbleAdmin">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbleBrands">
+      <EntityTypeMapping TypeName="Carshop12Model.tbleBrand">
+        <MappingFragment StoreEntitySet="tbleBrand">
+          <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbleCars">
+      <EntityTypeMapping TypeName="Carshop12Model.tbleCar">
+        <MappingFragment StoreEntitySet="tbleCar">
+          <ScalarProperty Name="CarID" ColumnName="CarID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Transmission" ColumnName="Transmission" />
+          <ScalarProperty Name="Entertainment" ColumnName="Entertainment" />
+          <ScalarProperty Name="Seats" ColumnName="Seats" />
+          <ScalarProperty Name="GpsTracker" ColumnName="GpsTracker" />
+          <ScalarProperty Name="Steering" ColumnName="Steering" />
+          <ScalarProperty Name="Headlights" ColumnName="Headlights" />
+          <ScalarProperty Name="HvAC" ColumnName="HvAC" />
+          <ScalarProperty Name="Safety" ColumnName="Safety" />
+          <ScalarProperty Name="Fuel" ColumnName="Fuel" />
+          <ScalarProperty Name="Instrument" ColumnName="Instrument" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbleCarNames">
+      <EntityTypeMapping TypeName="Carshop12Model.tbleCarName">
+        <MappingFragment StoreEntitySet="tbleCarNames">
+          <ScalarProperty Name="CarNameID" ColumnName="CarNameID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbleTypes">
+      <EntityTypeMapping TypeName="Carshop12Model.tbleType">
+        <MappingFragment StoreEntitySet="tbleType">
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DeletBrand" FunctionName="Carshop12Model.Store.DeletBrand" />
+    <FunctionImportMapping FunctionImportName="DeleteAdmin" FunctionName="Carshop12Model.Store.DeleteAdmin" />
+    <FunctionImportMapping FunctionImportName="DeleteCars" FunctionName="Carshop12Model.Store.DeleteCars" />
+    <FunctionImportMapping FunctionImportName="DeleteType" FunctionName="Carshop12Model.Store.DeleteType" />
+    <FunctionImportMapping FunctionImportName="DoAdminLogin" FunctionName="Carshop12Model.Store.DoAdminLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Carshop12Model.DoAdminLogin_Result">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAdmins" FunctionName="Carshop12Model.Store.GetAdmins">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Carshop12Model.GetAdmins_Result">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetBrand" FunctionName="Carshop12Model.Store.GetBrand">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Carshop12Model.GetBrand_Result">
+          <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCarNames" FunctionName="Carshop12Model.Store.GetCarNames">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Carshop12Model.GetCarNames_Result">
+          <ScalarProperty Name="CarNameID" ColumnName="CarNameID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCars" FunctionName="Carshop12Model.Store.GetCars">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Carshop12Model.GetCars_Result">
+          <ScalarProperty Name="CarID" ColumnName="CarID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Transmission" ColumnName="Transmission" />
+          <ScalarProperty Name="Entertainment" ColumnName="Entertainment" />
+          <ScalarProperty Name="Seats" ColumnName="Seats" />
+          <ScalarProperty Name="GpsTracker" ColumnName="GpsTracker" />
+          <ScalarProperty Name="Steering" ColumnName="Steering" />
+          <ScalarProperty Name="Headlights" ColumnName="Headlights" />
+          <ScalarProperty Name="HvAC" ColumnName="HvAC" />
+          <ScalarProperty Name="Safety" ColumnName="Safety" />
+          <ScalarProperty Name="Fuel" ColumnName="Fuel" />
+          <ScalarProperty Name="Instrument" ColumnName="Instrument" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetType" FunctionName="Carshop12Model.Store.GetType">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Carshop12Model.GetType_Result">
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
